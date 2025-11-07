@@ -1,0 +1,9 @@
+FROM nginx:latest
+
+COPY configs/nginx-dev.conf  /etc/nginx/nginx.conf
+
+# Expose port 80 (default Nginx port)
+EXPOSE 80
+
+# Command to run Nginx, ensuring it stays in the foreground
+CMD ["nginx", "-g", "daemon off;"]
