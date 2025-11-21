@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="fill-height" justify="center">
-      <v-col cols="auto">
+      <v-col cols="12">
         <v-card>
           <v-card-text>
             <v-data-table :items="app.records" :headers="app.headers">

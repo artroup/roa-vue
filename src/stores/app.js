@@ -14,22 +14,22 @@ export const appStore = defineStore("appStore", {
         { text: 'Serial Number', value: 'serialNumber' },
     ],
     types:[
-        { text: 'Rifle', value: 'RIFLE' },
-        { text: 'Handgun', value: 'HANDGUN' },
-        { text: 'Shotgun', value: 'SHOTGUN' },
-        { text: 'Miscellaneous', value: 'MISCELLANEOUS' },
+        { text: 'Rifle', value: 'Rifle' },
+        { text: 'Handgun', value: 'Handgun' },
+        { text: 'Shotgun', value: 'Shotgun' },
+        { text: 'Miscellaneous', value: 'Miscellaneous' },
     ],
     actions:[
-        { text: 'Bolt', value: 'BOLT' },
-        { text: 'Lever', value: 'LEVER' },
-        { text: 'Pump', value: 'PUMP' },
-        { text: 'Semi-Auto', value: 'SEMIAUTO' },
-        { text: 'Single Action', value: 'SINGLEACTION' },
-        { text: 'Double Action', value: 'DOUBLEACTION' },
-        { text: 'Break', value: 'BREAK' },
-        { text: 'Break Over/Under', value: 'BREAK_OVER' },
-        { text: 'Break Side', value: 'BREAK_SIDE' },
-        { text: 'Break Single', value: 'BREAK_SINGLE' },
+        { text: 'Bolt', value: 'Bolt' },
+        { text: 'Lever', value: 'Lever' },
+        { text: 'Pump', value: 'Pump' },
+        { text: 'Semi-Auto', value: 'Semi-Auto' },
+        { text: 'Single Action', value: 'Single Action' },
+        { text: 'Double Action', value: 'Double Action' },
+        { text: 'Break', value: 'Break' },
+        { text: 'Break Over/Under', value: 'Break Over/Under' },
+        { text: 'Break Side/Side', value: 'Break Side/Side' },
+        { text: 'Break Single', value: 'Break Single' },
     ],
     addDialog: false,
     newRecord: {
@@ -55,6 +55,7 @@ export const appStore = defineStore("appStore", {
     getRecords(){
         axios.get('/api/records')
         .then(response => {
+            console.log(response.data); 
             this.records = response.data;
         })
         .catch(error => {
