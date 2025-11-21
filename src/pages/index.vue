@@ -4,7 +4,7 @@
       <v-col cols="12">
         <v-card>
           <v-card-text>
-            <v-data-table :items="app.records" :headers="app.headers">
+            <v-data-table :items="app.records" :headers="app.headers" @click:row="openEntry">
               <template v-slot:top>
                 <v-toolbar flat>
                   <v-toolbar-title>Record of Arms</v-toolbar-title>
@@ -49,12 +49,21 @@
 </template>
 
 <script setup>
-  import {onMounted} from 'vue'
-  import { appStore } from '@/stores/app' 
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { appStore } from '@/stores/app'
 
-  const app = appStore()
+const app = appStore()
+const router = useRouter()
 
-  onMounted(() => {
-    app.getRecords()
-  })
+function openEntry(event, { item }){
+  console.log('row clicked', item.id)
+  if(item && item.id){
+    router.push(`/entry/${item.id}`)
+  }
+}
+
+onMounted(() => {
+  app.getRecords()
+})
 </script>
