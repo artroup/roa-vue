@@ -44,10 +44,10 @@ export const appStore = defineStore("appStore", {
         purchaseDate: 0,
         purchasePrice: 0.0,
         soldDate:0,
-        // priceRange:{low:0.0, high:0.0},
-        // itemsOfInterest:[],
-        // features:[],
-        // accessories:[],
+        priceRange:{low:0.0, high:0.0},
+        itemsOfInterest:[],
+        features:[],
+        accessories:[],
         // photos:[],
         // buyer:[],
         disposition:''
@@ -66,7 +66,8 @@ export const appStore = defineStore("appStore", {
         });
     },
     addRecord(record){
-        console.log(record)
+        var date = record.purchaseDate
+        record.purchaseDate = new Date(date).getTime()
         return axios.post('/api/record', record)
         .then(response => {
             this.getRecords(); // Refresh the records after adding a new one
@@ -76,6 +77,15 @@ export const appStore = defineStore("appStore", {
             console.error('There was an error!', error);
             throw error;
         });
+    },
+    formatDate(timestamp) {
+        if (!timestamp) return '';
+        const date = new Date(timestamp);
+        return date.toLocaleDateString();
+    },
+    formatPrice(value) {
+        if (value == null) return '';
+        return `$${value.toFixed(2)}`;
     }
   },
 }); 

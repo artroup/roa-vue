@@ -22,12 +22,48 @@
                         <v-card title="Enter New Entry">
                           <v-card-text>
                             <v-form>
-                              <v-text-field label="Serial Number" v-model="app.newRecord.serialNumber" required/>
-                              <v-combobox label="Manufacturer" v-model="app.newRecord.make" :items="app.manufacturers" required/>
-                              <v-text-field label="Model" v-model="app.newRecord.model" required/>
-                              <v-text-field label="Caliber" v-model="app.newRecord.caliber"/>
-                              <v-select label="Type" v-model="app.newRecord.type" :items="app.types" item-title="text" item-value="value"/>
-                              <v-select label="Action" v-model="app.newRecord.action" :items="app.actions" item-title="text" item-value="value"/>
+                              <v-row dense>
+                                <v-col cols="12">
+                                  <v-text-field label="Serial Number" v-model="app.newRecord.serialNumber" required variant="outlined"/>
+                                </v-col>
+                                <v-col cols="12">
+                                  <v-combobox label="Manufacturer" v-model="app.newRecord.make" :items="app.manufacturers" required variant="outlined"/>
+                                </v-col>
+                                <v-col cols="12">
+                                  <v-text-field label="Model" v-model="app.newRecord.model" required variant="outlined"/>
+                                </v-col>
+                                <v-col cols="12">
+                                  <v-text-field label="Caliber" v-model="app.newRecord.caliber" variant="outlined"/>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-select label="Type" v-model="app.newRecord.type" :items="app.types" item-title="text" item-value="value" variant="outlined"/>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-select label="Action" v-model="app.newRecord.action" :items="app.actions" item-title="text" item-value="value" variant="outlined"/>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-menu>
+                                    <template v-slot:activator="{ props }">
+                                      <v-text-field
+                                        v-bind="props"
+                                        label="Purchase Date"
+                                        v-model="app.newRecord.purchaseDate"
+                                        readonly
+                                        variant="outlined"/>
+                                    </template>
+                                    <v-date-picker label="Date input" v-model="app.newRecord.purchaseDate" variant="outlined"/>
+                                  </v-menu>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-text-field label="Purchase Price" v-model="app.newRecord.purchasePrice" type="number" prefix="$" variant="outlined"/>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-text-field label="Value High" v-model="app.newRecord.priceRange.high"  type="number" prefix="$" variant="outlined"/>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-text-field label="Value Low" v-model="app.newRecord.priceRange.low"  type="number" prefix="$" variant="outlined"/>  
+                                </v-col>
+                              </v-row>
                             </v-form>
                           </v-card-text>
                           <v-card-actions>
@@ -39,6 +75,9 @@
                       </template>
                     </v-dialog>
                 </v-toolbar>
+              </template>
+              <template v-slot:item.purchaseDate="{ item }">
+                {{ app.formatDate(item.purchaseDate) }}
               </template>
             </v-data-table>
           </v-card-text>

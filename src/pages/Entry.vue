@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" md="10">
+      <v-col cols="12">
         <v-card>
           <v-card-title>
             <div>
@@ -122,11 +122,6 @@
             </v-row>
 
           </v-card-text>
-
-          <v-card-actions>
-            <v-spacer />
-            <v-btn text @click="$emit('close')">Close</v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -142,7 +137,7 @@ import { appStore } from '@/stores/app'
 const route = useRoute()
 const router = useRouter()
 const app = appStore()
-const entry = ref(null)
+const entry = ref({})
 
 const id = route.params.id
 
