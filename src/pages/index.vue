@@ -63,6 +63,18 @@
                                 <v-col cols="6">
                                   <v-text-field label="Value Low" v-model="app.newRecord.priceRange.low"  type="number" prefix="$" variant="outlined"/>  
                                 </v-col>
+                                <v-col cols="12">
+                                  <v-combobox label="Items Of Interest" v-model="app.newRecord.itemsOfInterest" :items="app.newRecord.itemsOfInterest" multiple chips variant="outlined"/>
+                                </v-col>
+                                <v-col cols="12">
+                                  <v-combobox label="Features" v-model="app.newRecord.features" :items="app.newRecord.features" multiple chips variant="outlined"/>
+                                </v-col>
+                                <v-col cols="12">
+                                  <v-combobox label="Accessories" v-model="app.newRecord.accessories" :items="app.newRecord.accessories" multiple chips variant="outlined"/>
+                                </v-col>
+                                <v-col cols="12">
+                                  <v-textarea label="Disposition" v-model="app.newRecord.disposition" variant="outlined"/>
+                                </v-col>
                               </v-row>
                             </v-form>
                           </v-card-text>
